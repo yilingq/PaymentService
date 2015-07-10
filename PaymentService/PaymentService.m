@@ -110,340 +110,58 @@ NSString *const EMVAppExpiryDateTAG = @"EMVAppExpiryDate";
     return dateFromString;
 }
 
+- (NSString*)element:(GDataXMLElement *)element stringValueForTag:(NSString*)tag {
+	NSArray* array = [element elementsForName:tag];
+	
+	if (array.count > 0) {
+		return array.firstObject;
+	} else {
+		return @"";
+	}
+}
+
 - (void)BuildEMVTransaction:(GDataXMLElement *)transReportMember tran:(TransactionVO *)tran
 {
     //[self BuildEMVTransaction:transReportMember :&tran];
-    NSArray *aips = [transReportMember elementsForName:EMVApplicationInterchangeProfileTAG];
-    if (aips.count > 0)
-    {
-        GDataXMLElement *aip = (GDataXMLElement *) [aips objectAtIndex:0];
-        tran.eMVApplicationInterchangeProfileField = aip.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationInterchangeProfileField = @"";
-    }
-    NSArray *aids = [transReportMember elementsForName:EMVapplidentifierTAG];
-    if (aids.count > 0)
-    {
-        GDataXMLElement *aid = (GDataXMLElement *) [aids objectAtIndex:0];
-        tran.eMVApplicationIdentifierField = aid.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationIdentifierField = @"";
-    }
-    NSArray *tvrs = [transReportMember elementsForName:EMVTerminalVerificationResultsTAG];
-    if (tvrs.count > 0)
-    {
-        GDataXMLElement *tvr = (GDataXMLElement *) [tvrs objectAtIndex:0];
-        tran.eMVTerminalVerificationResultsField = tvr.stringValue;
-    }
-    else
-    {
-        tran.eMVTerminalVerificationResultsField = @"";
-    }
-    NSArray *tds = [transReportMember elementsForName:EMVTransactionDateTAG];
-    if (tds.count > 0)
-    {
-        GDataXMLElement *td = (GDataXMLElement *) [tds objectAtIndex:0];
-        tran.eMVTransactionDateField = td.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionDateField = @"";
-    }
-    NSArray *ctts = [transReportMember elementsForName:EMVCryptogramTransactionTypeTAG];
-    if (ctts.count > 0)
-    {
-        GDataXMLElement *ctt = (GDataXMLElement *) [ctts objectAtIndex:0];
-        tran.eMVCryptogramTransactionTypeField = ctt.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionDateField = @"";
-    }
-    NSArray *dfns = [transReportMember elementsForName:EMVDedicatedFileNameTAG];
-    if (dfns.count > 0)
-    {
-        GDataXMLElement *dfn = (GDataXMLElement *) [dfns objectAtIndex:0];
-        tran.eMVDedicatedFileNameField = dfn.stringValue;
-    }
-    else
-    {
-        tran.eMVDedicatedFileNameField = @"";
-    }
-    NSArray *iccs = [transReportMember elementsForName:EMVIssuerCountryCodeTAG];
-    if (iccs.count > 0)
-    {
-        GDataXMLElement *icc = (GDataXMLElement *) [iccs objectAtIndex:0];
-        tran.eMVIssuerCountryCodeField = icc.stringValue;
-    }
-    else
-    {
-        tran.eMVIssuerCountryCodeField = @"";
-    }
-    NSArray *tccs = [transReportMember elementsForName:EMVTransactionCurrencyCodeTAG];
-    if (tccs.count > 0)
-    {
-        GDataXMLElement *tcc = (GDataXMLElement *) [tccs objectAtIndex:0];
-        tran.eMVTransactionCurrencyCodeField = tcc.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionCurrencyCodeField = @"";
-    }
-    NSArray *tas = [transReportMember elementsForName:EMVTransactionAmountTAG];
-    if (tas.count > 0)
-    {
-        GDataXMLElement *ta = (GDataXMLElement *) [tas objectAtIndex:0];
-        tran.eMVTransactionAmountField = ta.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionAmountField = @"";
-    }
-    NSArray *avs = [transReportMember elementsForName:EMVApplicationVersionNumberTAG];
-    if (avs.count > 0)
-    {
-        GDataXMLElement *av = (GDataXMLElement *) [avs objectAtIndex:0];
-        tran.eMVApplicationVersionNumberField = av.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationVersionNumberField = @"";
-    }
-    NSArray *iads = [transReportMember elementsForName:EMVIssuerApplicationDataTAG];
-    if (iads.count > 0)
-    {
-        GDataXMLElement *iad = (GDataXMLElement *) [iads objectAtIndex:0];
-        tran.eMVIssuerApplicationDataField = iad.stringValue;
-    }
-    else
-    {
-        tran.eMVIssuerApplicationDataField = @"";
-    }
-    NSArray *teccs = [transReportMember elementsForName:EMVTerminalCountryCodeTAG];
-    if (teccs.count > 0)
-    {
-        GDataXMLElement *tecc = (GDataXMLElement *) [teccs objectAtIndex:0];
-        tran.eMVTerminalCountryCodeField = tecc.stringValue;
-    }
-    else
-    {
-        tran.eMVTerminalCountryCodeField = @"";
-    }
-    NSArray *idsns = [transReportMember elementsForName:EMVInterfaceDeviceSerialNumberTAG];
-    if (idsns.count > 0)
-    {
-        GDataXMLElement *idsn = (GDataXMLElement *) [idsns objectAtIndex:0];
-        tran.eMVInterfaceDeviceSerialNumberField = idsn.stringValue;
-    }
-    else
-    {
-        tran.eMVInterfaceDeviceSerialNumberField = @"";
-    }
-    NSArray *acs = [transReportMember elementsForName:EMVApplicationCryptogramTAG];
-    if (acs.count > 0)
-    {
-        GDataXMLElement *ac = (GDataXMLElement *) [acs objectAtIndex:0];
-        tran.eMVApplicationCryptogramField = ac.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationCryptogramField = @"";
-    }
-    NSArray *cids = [transReportMember elementsForName:EMVCryptogramInformationDataTAG];
-    if (cids.count > 0)
-    {
-        GDataXMLElement *cid = (GDataXMLElement *) [cids objectAtIndex:0];
-        tran.eMVCryptogramInformationDataField = cid.stringValue;
-    }
-    else
-    {
-        tran.eMVCryptogramInformationDataField = @"";
-    }
-    NSArray *tcs = [transReportMember elementsForName:EMVTerminalCapabilitiesTAG];
-    if (tcs.count > 0)
-    {
-        GDataXMLElement *tc = (GDataXMLElement *) [tcs objectAtIndex:0];
-        tran.eMVTerminalCapabilitiesField = tc.stringValue;
-    }
-    else
-    {
-        tran.eMVTerminalCapabilitiesField = @"";
-    }
-    NSArray *chvms = [transReportMember elementsForName:EMVCardholderVerificationMethodResultTAG];
-    if (chvms.count > 0)
-    {
-        GDataXMLElement *chvm = (GDataXMLElement *) [chvms objectAtIndex:0];
-        tran.eMVCardholderVerificationMethodResultsField = chvm.stringValue;
-    }
-    else
-    {
-        tran.eMVCardholderVerificationMethodResultsField = @"";
-    }
-    NSArray *tts = [transReportMember elementsForName:EMVTerminalTypeTAG];
-    if (tts.count > 0)
-    {
-        GDataXMLElement *tt = (GDataXMLElement *) [tts objectAtIndex:0];
-        tran.eMVTerminalTypeField = tt.stringValue;
-    }
-    else
-    {
-        tran.eMVTerminalTypeField = @"";
-    }
-    NSArray *atcs = [transReportMember elementsForName:EMVApplicationTransactionCounterTAG];
-    if (atcs.count > 0)
-    {
-        GDataXMLElement *atc = (GDataXMLElement *) [atcs objectAtIndex:0];
-        tran.eMVApplicationTransactionCounterField = atc.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationTransactionCounterField = @"";
-    }
-    NSArray *uns = [transReportMember elementsForName:EMVUnpredictableNumberTAG];
-    if (uns.count > 0)
-    {
-        GDataXMLElement *un = (GDataXMLElement *) [uns objectAtIndex:0];
-        tran.eMVUnpredictableNumberField = un.stringValue;
-    }
-    else
-    {
-        tran.eMVUnpredictableNumberField = @"";
-    }
-    NSArray *tscis = [transReportMember elementsForName:EMVTransactionSequenceCounterIDTAG];
-    if (tscis.count > 0)
-    {
-        GDataXMLElement *tsci = (GDataXMLElement *) [tscis objectAtIndex:0];
-        tran.eMVTransactionSequenceCounterIDField = tsci.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionSequenceCounterIDField = @"";
-    }
-    NSArray *accs = [transReportMember elementsForName:EMVApplicationCurrencyCodeTAG];
-    if (accs.count > 0)
-    {
-        GDataXMLElement *acc = (GDataXMLElement *) [accs objectAtIndex:0];
-        tran.eMVApplicationCurrencyCodeField = acc.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationCurrencyCodeField = @"";
-    }
-    NSArray *tccos = [transReportMember elementsForName:EMVTransactionCategoryCodeTAG];
-    if (tccos.count > 0)
-    {
-        GDataXMLElement *tcco = (GDataXMLElement *) [tccos objectAtIndex:0];
-        tran.eMVTransactionCategoryCodeField = tcco.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionCategoryCodeField = @"";
-    }
-    NSArray *isrs = [transReportMember elementsForName:EMVIssuerScriptResultsTAG];
-    if (isrs.count > 0)
-    {
-        GDataXMLElement *isr = (GDataXMLElement *) [isrs objectAtIndex:0];
-        tran.eMVIssuerScriptResultsField = isr.stringValue;
-    }
-    else
-    {
-        tran.eMVIssuerScriptResultsField = @"";
-    }
-    NSArray *arcs = [transReportMember elementsForName:EMVAuthorisationResponseCodeTAG];
-    if (arcs.count > 0)
-    {
-        GDataXMLElement *arc = (GDataXMLElement *) [arcs objectAtIndex:0];
-        tran.eMVAuthorizationResponseCodeField = arc.stringValue;
-    }
-    else
-    {
-        tran.eMVAuthorizationResponseCodeField = @"";
-    }
-    NSArray *iacds = [transReportMember elementsForName:EMVIssuerActionCodeDefaultTAG];
-    if (iacds.count > 0)
-    {
-        GDataXMLElement *iacd = (GDataXMLElement *) [iacds objectAtIndex:0];
-        tran.eMVIssuerActionCodeDefaultField = iacd.stringValue;
-    }
-    else
-    {
-        tran.eMVIssuerActionCodeDefaultField = @"";
-    }
-    NSArray *iacdns = [transReportMember elementsForName:EMVIssuerActionCodeDenialTAG];
-    if (iacdns.count > 0)
-    {
-        GDataXMLElement *iacdn = (GDataXMLElement *) [iacdns objectAtIndex:0];
-        tran.eMVIssuerActionCodeDenialField = iacdn.stringValue;
-    }
-    else
-    {
-        tran.eMVIssuerActionCodeDenialField = @"";
-    }
-    NSArray *iacos = [transReportMember elementsForName:EMVIssuerActionCodeOnlineTAG];
-    if (iacos.count > 0)
-    {
-        GDataXMLElement *iaco = (GDataXMLElement *) [iacos objectAtIndex:0];
-        tran.eMVIssuerActionCodeOnlineField = iaco.stringValue;
-    }
-    else
-    {
-        tran.eMVIssuerActionCodeOnlineField = @"";
-    }
-    NSArray *aucs = [transReportMember elementsForName:EMVApplicationUsageControlTAG];
-    if (aucs.count > 0)
-    {
-        GDataXMLElement *auc = (GDataXMLElement *) [aucs objectAtIndex:0];
-        tran.eMVApplicationUsageControlField = auc.stringValue;
-    }
-    else
-    {
-        tran.eMVApplicationUsageControlField = @"";
-    }
-    NSArray *tsis = [transReportMember elementsForName:EMVTransactionStatusInformationTAG];
-    if (tsis.count > 0)
-    {
-        GDataXMLElement *tsi = (GDataXMLElement *) [tsis objectAtIndex:0];
-        tran.eMVTransactionStatusInformationField = tsi.stringValue;
-    }
-    else
-    {
-        tran.eMVTransactionStatusInformationField = @"";
-    }
-    NSArray *sfis = [transReportMember elementsForName:EMVShortFileIdentifierTAG];
-    if (sfis.count > 0)
-    {
-        GDataXMLElement *sfi = (GDataXMLElement *) [sfis objectAtIndex:0];
-        tran.eMVShortFileIdentifier = sfi.stringValue;
-    }
-    else
-    {
-        tran.eMVShortFileIdentifier = @"";
-    }
-    NSArray *psns = [transReportMember elementsForName:EMVPanSequenceNumberTAG];
-    if (psns.count > 0)
-    {
-        GDataXMLElement *psn = (GDataXMLElement *) [psns objectAtIndex:0];
-        tran.eMVPanSequenceNumber = psn.stringValue;
-    }
-    else
-    {
-        tran.eMVPanSequenceNumber = @"";
-    }
-    NSArray *scs = [transReportMember elementsForName:EMVServiceCodeTAG];
-    if (scs.count > 0)
-    {
-        GDataXMLElement *sc = (GDataXMLElement *) [scs objectAtIndex:0];
-        tran.eMVServiceCode = sc.stringValue;
-    }
-    else
-    {
-        tran.eMVServiceCode = @"";
-    }
-}
+	
+	tran.eMVApplicationInterchangeProfileField = [self element:transReportMember stringValueForTag:EMVApplicationInterchangeProfileTAG];
+	tran.eMVApplicationIdentifierField = [self element:transReportMember stringValueForTag:EMVapplidentifierTAG];
+	tran.eMVTerminalVerificationResultsField = [self element:transReportMember stringValueForTag:EMVTerminalVerificationResultsTAG];
+	tran.eMVTransactionDateField = [self element:transReportMember stringValueForTag:EMVTransactionDateTAG];
+	
+	/*
+	 * In the case where the EMVCryptogramTransactionTypeTAG element was missing,
+	 * this previously was improperly clearing out the eMVTransactionDateField. - NRP
+	 */
+	tran.eMVCryptogramTransactionTypeField = [self element:transReportMember stringValueForTag:EMVCryptogramTransactionTypeTAG];
+	tran.eMVDedicatedFileNameField = [self element:transReportMember stringValueForTag:EMVDedicatedFileNameTAG];
+	tran.eMVIssuerCountryCodeField = [self element:transReportMember stringValueForTag:EMVIssuerCountryCodeTAG];
+	tran.eMVTransactionCurrencyCodeField = [self element:transReportMember stringValueForTag:EMVTransactionCurrencyCodeTAG];
+	tran.eMVTransactionAmountField = [self element:transReportMember stringValueForTag:EMVTransactionAmountTAG];
+	tran.eMVApplicationVersionNumberField = [self element:transReportMember stringValueForTag:EMVApplicationVersionNumberTAG];
+	tran.eMVIssuerApplicationDataField = [self element:transReportMember stringValueForTag:EMVIssuerApplicationDataTAG];
+	tran.eMVTerminalCountryCodeField = [self element:transReportMember stringValueForTag:EMVTerminalCountryCodeTAG];
+	tran.eMVInterfaceDeviceSerialNumberField = [self element:transReportMember stringValueForTag:EMVInterfaceDeviceSerialNumberTAG];
+	tran.eMVApplicationCryptogramField = [self element:transReportMember stringValueForTag:EMVApplicationCryptogramTAG];
+	tran.eMVCryptogramInformationDataField = [self element:transReportMember stringValueForTag:EMVCryptogramInformationDataTAG];
+	tran.eMVTerminalCapabilitiesField = [self element:transReportMember stringValueForTag:EMVTerminalCapabilitiesTAG];
+	tran.eMVCardholderVerificationMethodResultsField = [self element:transReportMember stringValueForTag:EMVCardholderVerificationMethodResultTAG];
+	tran.eMVTerminalTypeField = [self element:transReportMember stringValueForTag:EMVTerminalTypeTAG];
+	tran.eMVApplicationTransactionCounterField = [self element:transReportMember stringValueForTag:EMVApplicationTransactionCounterTAG];
+	tran.eMVUnpredictableNumberField = [self element:transReportMember stringValueForTag:EMVUnpredictableNumberTAG];
+	tran.eMVTransactionSequenceCounterIDField = [self element:transReportMember stringValueForTag:EMVTransactionSequenceCounterIDTAG];
+	tran.eMVApplicationCurrencyCodeField = [self element:transReportMember stringValueForTag:EMVApplicationCurrencyCodeTAG];
+	tran.eMVTransactionCategoryCodeField = [self element:transReportMember stringValueForTag:EMVTransactionCategoryCodeTAG];
+	tran.eMVIssuerScriptResultsField = [self element:transReportMember stringValueForTag:EMVIssuerScriptResultsTAG];
+	tran.eMVAuthorizationResponseCodeField = [self element:transReportMember stringValueForTag:EMVAuthorisationResponseCodeTAG];
+	tran.eMVIssuerActionCodeDefaultField = [self element:transReportMember stringValueForTag:EMVIssuerActionCodeDefaultTAG];
+	tran.eMVIssuerActionCodeDenialField = [self element:transReportMember stringValueForTag:EMVIssuerActionCodeDenialTAG];
+	tran.eMVIssuerActionCodeOnlineField = [self element:transReportMember stringValueForTag:EMVIssuerActionCodeOnlineTAG];
+	tran.eMVApplicationUsageControlField = [self element:transReportMember stringValueForTag:EMVApplicationUsageControlTAG];
+	tran.eMVTransactionStatusInformationField = [self element:transReportMember stringValueForTag:EMVTransactionStatusInformationTAG];
+	tran.eMVShortFileIdentifier = [self element:transReportMember stringValueForTag:EMVShortFileIdentifierTAG];
+	tran.eMVPanSequenceNumber = [self element:transReportMember stringValueForTag:EMVPanSequenceNumberTAG];
+	tran.eMVServiceCode = [self element:transReportMember stringValueForTag:EMVServiceCodeTAG];}
 
 - (Transactions *)loadTransactions :(NSString*)fileName
 {
@@ -481,145 +199,52 @@ NSString *const EMVAppExpiryDateTAG = @"EMVAppExpiryDate";
         NSArray *transMembers = [doc nodesForXPath:@"//paymentReport/transactionRec" error:nil];
        
         GDataXMLElement *genInfoMember = genInfoMembers[0];
-        
-        NSArray *companyIds = [genInfoMember elementsForName:CompanyIdTAG];
-        if (companyIds.count > 0)
-        {
-            GDataXMLElement *cmpId = (GDataXMLElement *) [companyIds objectAtIndex:0];
-            
-            compId = (int)[cmpId.stringValue integerValue];
-        }
-        NSArray *crewIds = [genInfoMember elementsForName:CrewIdTAG];
-        if (crewIds.count > 0)
-        {
-            GDataXMLElement *creId = (GDataXMLElement *) [crewIds objectAtIndex:0];
-            crId = (int)[creId.stringValue integerValue];
-        }
-        NSArray *deviceIds = [genInfoMember elementsForName:DeviceIdTAG];
-        if (deviceIds.count > 0)
-        {
-            GDataXMLElement *devid = (GDataXMLElement *) [deviceIds objectAtIndex:0];
-            devId = devid.stringValue;
-        }
-        NSArray *fltIds = [genInfoMember elementsForName:FlightNumberTAG];
-        if (fltIds.count > 0)
-        {
-            GDataXMLElement *fltid = (GDataXMLElement *) [fltIds objectAtIndex:0];
-            fltNum = fltid.stringValue;
-        }
-        NSArray *orgAirports = [genInfoMember elementsForName:OriginatingAirportTAG];
-        if (orgAirports.count > 0)
-        {
-            GDataXMLElement *orgAirport = (GDataXMLElement *) [orgAirports objectAtIndex:0];
-            origAiport = orgAirport.stringValue;
-        }
-        NSArray *destAirports = [genInfoMember elementsForName:DestinationAirportTAG];
-        if (destAirports.count > 0)
-        {
-            GDataXMLElement *dstAirport = (GDataXMLElement *) [destAirports objectAtIndex:0];
-            destAirport = dstAirport.stringValue;
-        }
-        NSArray *deptimes = [genInfoMember elementsForName:DepartureTimeTAG];
-        if (deptimes.count > 0)
-        {
-            GDataXMLElement *depttime = (GDataXMLElement *) [deptimes objectAtIndex:0];
-            depTime = [self StringToDate: @"yyyy-MM-dd" :depttime.stringValue];
-        }
+		
+		compId = [[self element:genInfoMember stringValueForTag:CompanyIdTAG] intValue];
+		crId = [[self element:genInfoMember stringValueForTag:CrewIdTAG] intValue];
+		devId = [self element:genInfoMember stringValueForTag:DeviceIdTAG];
+		fltNum = [self element:genInfoMember stringValueForTag:FlightNumberTAG];
+		origAiport = [self element:genInfoMember stringValueForTag:OriginatingAirportTAG];
+		destAirport = [self element:genInfoMember stringValueForTag:DestinationAirportTAG];
+		depTime = [self StringToDate: @"yyyy-MM-dd" :[self element:genInfoMember stringValueForTag:DepartureTimeTAG]];
 
         trans.info = [[GeneralInfoVO alloc] initWithName :compId crewId:crId deviceId:devId depTime:depTime fltNum:fltNum origAiport:origAiport destAirport:destAirport];
         
         for (GDataXMLElement *transReportMember in transMembers)
         {
-            NSArray *itemIds = [transReportMember elementsForName:ItemIdTAG];
-            if (itemIds.count > 0)
-            {
-                GDataXMLElement *itId = (GDataXMLElement *) [itemIds objectAtIndex:0];
-                itmId = (int)[itId.stringValue integerValue];
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *amts = [transReportMember elementsForName:AmountTAG];
-            if (amts.count > 0)
-            {
-                GDataXMLElement *amut = (GDataXMLElement *) [amts objectAtIndex:0];
-                amt = [NSDecimalNumber decimalNumberWithString:amut.stringValue];
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *currencies = [transReportMember elementsForName:CurrencyTAG];
-            if (currencies.count > 0)
-            {
-                GDataXMLElement *curr = (GDataXMLElement *) [currencies objectAtIndex:0];
-                cur = curr.stringValue;
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *seatNumbers = [transReportMember elementsForName:SeatNumberTAG];
-            if (seatNumbers.count > 0)
-            {
-                GDataXMLElement *seats = (GDataXMLElement *) [seatNumbers objectAtIndex:0];
-                seat = seats.stringValue;
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *fareClasses = [transReportMember elementsForName:FareClassTAG];
-            if (fareClasses.count > 0)
-            {
-                GDataXMLElement *fares = (GDataXMLElement *) [fareClasses objectAtIndex:0];
-                fare = fares.stringValue;
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *ffStatuses = [transReportMember elementsForName:FFStatusTAG];
-            if (ffStatuses.count > 0)
-            {
-                GDataXMLElement *statuses = (GDataXMLElement *) [ffStatuses objectAtIndex:0];
-                ffSt = statuses.stringValue;
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *paymentTypes = [transReportMember elementsForName:PaymentTypeTAG];
-            if (paymentTypes.count > 0)
-            {
-                GDataXMLElement *pt = (GDataXMLElement *) [paymentTypes objectAtIndex:0];
-                payType = pt.stringValue;
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *tracks = [transReportMember elementsForName:TrackTAG];
-            if (tracks.count > 0)
-            {
-                GDataXMLElement *tck = (GDataXMLElement *) [tracks objectAtIndex:0];
-                trck = tck.stringValue;
-            }
-            else
-            {
-                continue;
-            }
-            NSArray *uids = [transReportMember elementsForName:UniqueTransactionIdTAG];
-            if (uids.count > 0)
-            {
-                GDataXMLElement *uid = (GDataXMLElement *) [uids objectAtIndex:0];
-                uniTranId = uid.stringValue;
-            }
-            else
-            {
-                continue;
-            }
+			NSString* itemIdString = [self element:transReportMember stringValueForTag:ItemIdTAG];
+			itmId = [itemIdString intValue];
+			
+			NSString* amtString = [self element:transReportMember stringValueForTag:AmountTAG];
+			amt = [NSDecimalNumber decimalNumberWithString:amtString];
+			
+			cur = [self element:transReportMember stringValueForTag:CurrencyTAG];
+			seat = [self element:transReportMember stringValueForTag:SeatNumberTAG];
+			fare = [self element:transReportMember stringValueForTag:FareClassTAG];
+			ffSt = [self element:transReportMember stringValueForTag:FFStatusTAG];
+			payType = [self element:transReportMember stringValueForTag:PaymentTypeTAG];
+			trck = [self element:transReportMember stringValueForTag:TrackTAG];
+			uniTranId = [self element:transReportMember stringValueForTag:UniqueTransactionIdTAG];
+			
+#warning TODO: is this right?
+			/*
+			 * I am preserving the original behavior, where if any of the above fields were
+			 * missing, it would silently skip this transaction. It seems like we should at
+			 * least log a warning. - NRP
+			 */
+			if (itemIdString.length == 0 ||
+				amtString.length == 0 ||
+				cur.length == 0 ||
+				seat.length == 0 ||
+				fare.length == 0 ||
+				ffSt.length == 0 ||
+				payType.length == 0 ||
+				trck.length == 0 ||
+				uniTranId.length == 0)
+			{
+				// TODO: maybe put a warning here?
+				continue;
+			}
 
             //build new transaction
             TransactionVO *tran = [[TransactionVO alloc] init];

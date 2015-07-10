@@ -17,7 +17,7 @@
 		// I think this will always end up being nil?
         // uniqueTransactionId = [_uniqueTransactionId UUIDString];
 		
-		// I think this was probably the intention
+		// I think this was probably the intention - NRP
 		self.uniqueTransactionId = [[NSUUID UUID] UUIDString];
     }
     return self;
