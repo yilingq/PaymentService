@@ -10,33 +10,20 @@
 
 @implementation GeneralInfoVO
 
-@synthesize DepartureTime;
-@synthesize FlightNum;
-@synthesize OriginatingAirport;
-@synthesize DestinationAirport;
-
-- (id)initWithName: (int)companyId crewId:(int)crewId deviceId:(NSString *)deviceId depTime:(NSDate *)depTime fltNum:(NSString *)fltNum origAiport:(NSString *)origAiport destAirport:(NSString *)destAirport
+- (instancetype)initWithName: (int)companyId crewId:(int)crewId deviceId:(NSString *)deviceId depTime:(NSDate *)depTime fltNum:(NSString *)fltNum origAiport:(NSString *)origAiport destAirport:(NSString *)destAirport
 {
     if ((self = [super init]))
     {
         self.deviceId = deviceId;
         self.companyId = companyId;
         self.crewId = crewId;
-        DepartureTime = depTime;
-        FlightNum = fltNum;
-        OriginatingAirport = origAiport;
-        DestinationAirport = destAirport;
+        self.DepartureTime = depTime;
+        self.FlightNum = fltNum;
+        self.OriginatingAirport = origAiport;
+        self.DestinationAirport = destAirport;
     }
     return self;
     
 }
 
-- (void) dealloc
-{
-    self.deviceId = nil;
-    DepartureTime = nil;
-    FlightNum = nil;
-    OriginatingAirport = nil;
-    DestinationAirport = nil;
-}
 @end

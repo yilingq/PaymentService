@@ -117,11 +117,11 @@ NSString *const EMVAppExpiryDateTAG = @"EMVAppExpiryDate";
     if (aips.count > 0)
     {
         GDataXMLElement *aip = (GDataXMLElement *) [aips objectAtIndex:0];
-        tran.EMVApplicationInterchangeProfileField = aip.stringValue;
+        tran.eMVApplicationInterchangeProfileField = aip.stringValue;
     }
     else
     {
-        tran.EMVApplicationInterchangeProfileField = @"";
+        tran.eMVApplicationInterchangeProfileField = @"";
     }
     NSArray *aids = [transReportMember elementsForName:EMVapplidentifierTAG];
     if (aids.count > 0)

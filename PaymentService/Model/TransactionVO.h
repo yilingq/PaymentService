@@ -9,55 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TransactionVO : NSObject
-{
-    int _itemId;
-    NSDecimalNumber *_amount;
-    NSString * _seatNumber;
-    NSString * _fareClass;
-    NSString * _ffStatus;
-    NSString * _currency;
-    NSString *_paymentType;
-    NSUUID  *_uniqueTransactionId;
-    NSString * _track;
-    NSString * _eMVApplicationIdentifierField;
-    NSString * _eMVCryptogramTransactionTypeField;
-    NSString * _eMVIssuerScriptTemplate1Field;
-    NSString * _eMVIssuerScriptTemplate2Field;
-    NSString * _eMVApplicationInterchangeProfileField;
-    NSString * _eMVDedicatedFileNameField;
-    NSString * _eMVAuthorizationResponseCodeField;
-    NSString * _eMVIssuerAuthenticationDataField;
-    NSString * _eMVTerminalVerificationResultsField;
-    NSString * _eMVTransactionDateField;
-    NSString * _eMVTransactionStatusInformationField;
-    NSString * _eMVTransactionTypeField;
-    NSString * _eMVIssuerCountryCodeField;
-    NSString * _eMVTransactionCurrencyCodeField;
-    NSString * _eMVCardSequenceNumberField;
-    NSString * _eMVTransactionAmountField;
-    NSString * _eMVApplicationUsageControlField;
-    NSString * _eMVApplicationVersionNumberField;
-    NSString * _eMVIssuerActionCodeDenialField;
-    NSString * _eMVIssuerActionCodeOnlineField;
-    NSString * _eMVIssuerActionCodeDefaultField;
-    NSString * _eMVIssuerApplicationDataField;
-    NSString * _eMVTerminalCountryCodeField;
-    NSString * _eMVInterfaceDeviceSerialNumberField;
-    NSString * _eMVApplicationCryptogramField;
-    NSString * _eMVCryptogramInformationDataField;
-    NSString * _eMVTerminalCapabilitiesField;
-    NSString * _eMVCardholderVerificationMethodResultsField;
-    NSString * _eMVTerminalTypeField;
-    NSString * _eMVApplicationTransactionCounterField;
-    NSString * _eMVUnpredictableNumberField;
-    NSString * _eMVTransactionSequenceCounterIDField;
-    NSString * _eMVApplicationCurrencyCodeField;
-    NSString * _eMVTransactionCategoryCodeField;
-    NSString * _eMVIssuerScriptResultsField;
-    NSString * _eMVPanSequenceNumber;
-    NSString * _eMVServiceCode;
-    NSString * _eMVShortFileIdentifier;
-}
+
 @property (nonatomic, assign) int itemId;
 @property (nonatomic, copy) NSDecimalNumber *amount;
 @property (nonatomic, copy) NSString *seatNumber;
@@ -106,6 +58,6 @@
 @property (nonatomic, copy) NSString * eMVServiceCode;
 @property (nonatomic, copy) NSString * eMVShortFileIdentifier;
 
-- (id)init;
-- (id)initWithName:(int)itmId amt:(NSDecimalNumber *)amt curency:(NSString *)currency payType:(NSString*)payType trck:(NSString *)trck uniqueId:(NSString*)uniqueId;
+- (instancetype)init;
+- (instancetype)initWithName:(int)itmId amt:(NSDecimalNumber *)amt curency:(NSString *)currency payType:(NSString*)payType trck:(NSString *)trck uniqueId:(NSString*)uniqueId;
 @end

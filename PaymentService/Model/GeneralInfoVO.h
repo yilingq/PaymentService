@@ -9,16 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface GeneralInfoVO : NSObject
-{
-    int _companyId;
-    int _crewId;
-    NSString * _deviceId;
-    NSDate *_departureTime;
-    NSString * _flightNum;
-    NSString * _originatingAirport;
-    NSString * _destinationAirport;
-    
-}
+
 @property (nonatomic, assign) int companyId;
 @property (nonatomic, assign) int crewId;
 @property (nonatomic, copy) NSString *deviceId;
@@ -27,6 +18,6 @@
 @property (nonatomic, copy) NSString *OriginatingAirport;
 @property (nonatomic, copy) NSString *DestinationAirport;
 
-- (id)initWithName: (int)companyId crewId:(int)crewId deviceId:(NSString *)deviceId depTime:(NSDate *)depTime fltNum:(NSString *)fltNum origAiport:(NSString *)origAiport destAirport:(NSString *)destAirport;
+- (instancetype)initWithName: (int)companyId crewId:(int)crewId deviceId:(NSString *)deviceId depTime:(NSDate *)depTime fltNum:(NSString *)fltNum origAiport:(NSString *)origAiport destAirport:(NSString *)destAirport;
 
 @end

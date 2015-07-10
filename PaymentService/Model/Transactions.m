@@ -11,9 +11,6 @@
 
 @implementation Transactions
 
-@synthesize info = _info;
-@synthesize transactionRecords = _transactionRecords;
-
 - (id)init
 {    
     if ((self = [super init]))
@@ -21,11 +18,6 @@
         self.transactionRecords = [[NSMutableArray alloc] init];
     }
     return self;
-}
-
-- (void) dealloc
-{
-    self.transactionRecords = nil;
 }
 
 @end

@@ -10,12 +10,10 @@
 #import "GeneralInfoVO.h"
 
 @interface Transactions : NSObject
-{
-    GeneralInfoVO *_info;
-    NSMutableArray *_transactionRecords;
-}
+
 @property (strong, nonatomic) GeneralInfoVO *info;
 @property (strong, nonatomic) NSMutableArray *transactionRecords;
+
 @end
 
 
